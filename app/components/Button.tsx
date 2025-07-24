@@ -3,12 +3,10 @@
 import { useCarsStore } from "@/app/store/cars-store";
 
 export default function Button() {
-  const { fetchCars } = useCarsStore();
-
   return (
-    <button
+    <a
       className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-out focus:outline-none focus:ring-4 focus:ring-blue-500/50"
-      onClick={fetchCars}
+      href="#cars"
     >
       <span className="relative flex items-center gap-2">
         <svg
@@ -27,6 +25,6 @@ export default function Button() {
         Discover Cars
       </span>
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 -z-10"></div>
-    </button>
+    </a>
   );
 }

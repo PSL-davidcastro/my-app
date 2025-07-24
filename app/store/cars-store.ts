@@ -8,6 +8,9 @@ export type CarType = {
 interface CarsState {
   cars: CarType[];
   fetchCars: () => Promise<void>;
+  addCar: (car: CarType) => void;
+  updateCar: (car: CarType) => void;
+  deleteCar: (id: number) => void;
 }
 
 export const useCarsStore = create<CarsState>(set => ({
@@ -20,4 +23,11 @@ export const useCarsStore = create<CarsState>(set => ({
     const data = await response.json();
     set({ cars: data });
   },
+  addCar: (car: CarType) => set(state => ({ cars: [...state.cars, car] })),
+  updateCar: (car: CarType) =>
+    set(state => ({
+      cars: state.cars.map(c => (c.id === car.id ? { ...c, ...car } : c)),
+    })),
+  deleteCar: (id: number) =>
+    set(state => ({ cars: state.cars.filter(car => car.id !== id) })),
 }));
