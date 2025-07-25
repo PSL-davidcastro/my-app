@@ -7,7 +7,9 @@ export type CarType = {
 };
 interface CarsState {
   cars: CarType[];
+  isInitialized: boolean;
   fetchCars: () => Promise<void>;
+  initializeCars: (cars: CarType[]) => void;
   addCar: (car: CarType) => void;
   updateCar: (car: CarType) => void;
   deleteCar: (id: number) => void;
@@ -15,14 +17,16 @@ interface CarsState {
 
 export const useCarsStore = create<CarsState>(set => ({
   cars: [],
+  isInitialized: false,
   fetchCars: async () => {
     const response = await fetch("/api/cars");
     if (!response.ok) {
       throw new Error("Failed to fetch cars");
     }
     const data = await response.json();
-    set({ cars: data });
+    set({ cars: data, isInitialized: true });
   },
+  initializeCars: (cars: CarType[]) => set({ cars, isInitialized: true }),
   addCar: (car: CarType) => set(state => ({ cars: [...state.cars, car] })),
   updateCar: (car: CarType) =>
     set(state => ({

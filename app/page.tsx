@@ -1,6 +1,36 @@
 import CarsList from "./components/CarsList";
+import { CarType } from "./store/cars-store";
 
-export default function Home() {
+// Server-side function to fetch cars
+async function getCars(): Promise<CarType[]> {
+  try {
+    // In production, you'd use your full URL
+    const baseUrl =
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_PUBLIC_SITE_URL
+        : "http://localhost:3000";
+
+    const response = await fetch(`${baseUrl}/api/cars`, {
+      // Ensure fresh data on each request
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch cars");
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching cars:", error);
+    // Return empty array as fallback
+    return [];
+  }
+}
+
+export default async function Home() {
+  // Fetch cars on the server
+  const initialCars = await getCars();
+
   return (
     <div className="">
       {/* Hero Section */}
@@ -30,7 +60,7 @@ export default function Home() {
               Browse through our carefully curated selection of quality vehicles
             </p>
           </div>
-          <CarsList />
+          <CarsList initialCars={initialCars} />
         </div>
       </section>
     </div>
