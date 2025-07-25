@@ -1,11 +1,10 @@
-import Button from "./components/Button";
 import CarsList from "./components/CarsList";
 
 export default function Home() {
   return (
-    <div className="space-y-16">
+    <div className="">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Welcome to{" "}
@@ -17,7 +16,6 @@ export default function Home() {
             Discover and explore our amazing collection of vehicles. Your
             perfect car is just one click away.
           </p>
-          <Button />
         </div>
       </section>
 
