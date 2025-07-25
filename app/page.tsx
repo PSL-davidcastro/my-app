@@ -5,10 +5,7 @@ import { CarType } from "./store/cars-store";
 async function getCars(): Promise<CarType[]> {
   try {
     // In production, you'd use your full URL
-    const baseUrl =
-      process.env.NODE_ENV === "production"
-        ? process.env.NEXT_PUBLIC_SITE_URL
-        : "http://localhost:3000";
+    const baseUrl = "http://localhost:3000";
 
     const response = await fetch(`${baseUrl}/api/cars`, {
       // Ensure fresh data on each request
