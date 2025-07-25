@@ -42,10 +42,6 @@ export default async function Home() {
               CarHub
             </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Discover and explore our amazing collection of vehicles. Your
-            perfect car is just one click away.
-          </p>
         </div>
       </section>
 
