@@ -29,14 +29,6 @@ export default function RootLayout({
       >
         <div className="min-h-screen flex flex-col">
           <main className="flex-1">{children}</main>
-
-          <footer className="bg-gray-50 border-t border-gray-200 mt-auto">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="text-center text-gray-600">
-                <p>&copy; 2025 CarHub. Built with Next.js and Tailwind CSS.</p>
-              </div>
-            </div>
-          </footer>
         </div>
       </body>
     </html>
